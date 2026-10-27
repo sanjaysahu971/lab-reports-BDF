@@ -6,7 +6,7 @@ const express = require('express');
 // Create the Express application
 const app = express();
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // ─── Routes ──────────────────────────────────────────────────────────────────
 
@@ -51,3 +51,6 @@ app.listen(PORT, () => {
   console.log('  GET /time   → Current date and time (JSON)');
   console.log('  Any other   → 404 Not Found');
 });
+
+// Export for serverless platforms (e.g. Vercel)
+module.exports = app;
