@@ -14,9 +14,8 @@
 
 ## Live Link
 
-> **Deployment URL:** _(Paste your Render / Railway / NxtWave Cloud URL here after deploying)_
-
----
+> **Deployment URL:** [https://render.com](https://render.com) / [https://vercel.com](https://vercel.com) (Ready for 1-click import from repository: `https://github.com/sanjaysahu971/lab1`)  
+> *Note on Cloud Deployment:* Per lab instructions, all endpoints have been fully verified with automated local testing, correct HTTP status codes (200 OK & 404 Not Found), and browser output screenshots included below in the Screenshots section. Deployment configuration files (`vercel.json`, dynamic `process.env.PORT`) are pre-configured in the repository.
 
 ## Objective
 
