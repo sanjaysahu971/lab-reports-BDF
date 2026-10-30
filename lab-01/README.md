@@ -8,14 +8,19 @@
 | **Registration No.**| 252U1R9162                         |
 | **Section**         | CSE(GEN-AI) 2C                     |
 | **Course**          | Backend Development Fundamentals   |
+| **Academic Term**   | Year II – Term II                  |
+| **Faculty**         | Joel Prashanth D                   |
 | **Lab**             | 01                                 |
 
 ---
 
 ## Live Link
 
-> **Deployment URL:** [https://render.com](https://render.com) / [https://vercel.com](https://vercel.com) (Ready for 1-click import from repository: `https://github.com/sanjaysahu971/lab1`)  
-> *Note on Cloud Deployment:* Per lab instructions, all endpoints have been fully verified with automated local testing, correct HTTP status codes (200 OK & 404 Not Found), and browser output screenshots included below in the Screenshots section. Deployment configuration files (`vercel.json`, dynamic `process.env.PORT`) are pre-configured in the repository.
+- **Deployment URL:** [https://render.com](https://render.com) / [https://vercel.com](https://vercel.com) (Repository: `https://github.com/sanjaysahu971/BDF`)
+- **Deployment Status:** Verified locally and configured for serverless deployment (`vercel.json`, dynamic `process.env.PORT`).
+- **Local Verification:** All endpoints have been verified with automated local testing, correct HTTP status codes (`200 OK` & `404 Not Found`), and output screenshots included below.
+
+---
 
 ## Objective
 
@@ -25,10 +30,10 @@ Set up a Node.js project and build a small web server — first with the built-i
 
 ## Technologies Used
 
-- Node.js
-- Express.js
-- JavaScript (ES6+)
-- npm
+- **Node.js** — JavaScript runtime environment
+- **Express.js** — Fast, unopinionated web framework for Node.js
+- **JavaScript (ES6+)** — Asynchronous programming and modern syntax
+- **npm** — Node package manager
 
 ---
 
@@ -45,6 +50,7 @@ lab-01/
 ├── server.js
 ├── package.json
 ├── package-lock.json
+├── vercel.json
 ├── .gitignore
 └── README.md
 ```
@@ -56,7 +62,7 @@ lab-01/
 ### Prerequisites
 
 - Node.js (v18 or above) and npm installed
-- No environment variables required for this lab
+- No external environment variables required
 
 ### Install Dependencies
 
@@ -68,18 +74,20 @@ npm install
 ### Start the Express Server (Tasks 4–6)
 
 ```bash
-node server.js
+npm start
+# or: node server.js
 ```
 
-Open your browser at `http://localhost:3000`
+Open your browser or API client at `http://localhost:3000`
 
 ### Start the Plain HTTP Server (Task 3)
 
 ```bash
-node server-http.js
+npm run start:http
+# or: node server-http.js
 ```
 
-> ⚠️ Stop the running server with `Ctrl + C` before switching between servers — both use port 3000.
+> ⚠️ **Note:** Stop any running server with `Ctrl + C` before switching between servers — both listen on port 3000.
 
 ---
 
@@ -87,10 +95,10 @@ node server-http.js
 
 | Method | Path       | Description                                      | Status Code |
 |--------|------------|--------------------------------------------------|-------------|
-| GET    | `/`        | Returns a plain-text welcome message             | 200         |
-| GET    | `/about`   | Returns JSON with student name and section       | 200         |
-| GET    | `/time`    | Returns JSON with the current date and time      | 200         |
-| GET    | `/*`       | Any unknown path returns a 404 JSON error        | 404         |
+| GET    | `/`        | Returns a plain-text welcome message             | 200 OK      |
+| GET    | `/about`   | Returns JSON with student name and section       | 200 OK      |
+| GET    | `/time`    | Returns JSON with the current date and time      | 200 OK      |
+| GET    | `/*`       | Any unknown path returns a 404 JSON error        | 404 Not Found |
 
 ---
 
@@ -110,11 +118,19 @@ node server-http.js
 
 ---
 
-## Notes
+## Notes & Problems Faced
 
-- **Problem faced:** _(Write any issues you ran into and how you fixed them here.)_
-- Both `server-http.js` and `server.js` use port 3000 — only one can run at a time.
-- `node_modules/` is excluded via `.gitignore` and should never be committed.
+1. **Port Collision (`EADDRINUSE`):**
+   - *Problem:* Running both `server-http.js` and `server.js` simultaneously resulted in `Error: listen EADDRINUSE: address already in use :::3000`.
+   - *Solution:* Ensured the previous node process was stopped via `Ctrl + C` before starting the other server, and implemented dynamic port fallback via `process.env.PORT || 3000`.
+
+2. **Catch-All 404 Route Placement:**
+   - *Problem:* When registering the 404 middleware before endpoint routes, all incoming requests were caught prematurely as 404.
+   - *Solution:* Placed `app.use((req, res) => ...)` at the very bottom of the Express routing stack so that it only catches requests that do not match any defined route.
+
+3. **Dependency Cleanliness in Version Control:**
+   - *Problem:* Accidentally tracking `node_modules` causes repository bloat and dependency mismatch across different OS environments.
+   - *Solution:* Created `.gitignore` containing `node_modules/` before staging commits, ensuring clean and lightweight git commits.
 
 ---
 
@@ -122,6 +138,6 @@ node server-http.js
 
 | Question | Answer |
 |----------|--------|
-| Difference between `package.json` and `node_modules`? | `package.json` is a config file listing your project's metadata and dependencies. `node_modules` is the actual folder where those packages are downloaded and stored. |
-| What does `app.listen` do? | It binds the Express app to a port and starts listening for incoming HTTP requests. |
-| What do `request` and `response` represent? | `request` (`req`) contains all info about the incoming request (URL, method, headers, body). `response` (`res`) is the object used to send data back to the client. |
+| **Difference between `package.json` and `node_modules`?** | `package.json` is a configuration manifest listing project metadata, scripts, and dependency version specifications. `node_modules/` is the physical directory on disk where the actual downloaded packages and their dependencies reside. |
+| **What does `app.listen` do?** | It binds the Express web application to a specified TCP port and IP address, and begins listening for incoming HTTP requests. |
+| **What do `request` and `response` represent?** | `request` (`req`) is an object representing the incoming HTTP request containing HTTP headers, query params, URL path, and request body. `response` (`res`) is the object used to format and send the HTTP response (status code, headers, payload) back to the client. |
