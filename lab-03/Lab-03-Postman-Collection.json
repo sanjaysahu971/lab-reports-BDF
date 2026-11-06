@@ -1,0 +1,364 @@
+{
+  "info": {
+    "name": "Lab 3 - REST API, Query Parameters & Validation",
+    "_postman_id": "bdf-lab-03-postman-collection",
+    "description": "Comprehensive Postman test suite for Lab 3 (Sanjay Thota - 252U1R9162)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 - GET All Books",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"]
+        }
+      }
+    },
+    {
+      "name": "02 - Search Books (search_q=JavaScript)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books?search_q=JavaScript",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"],
+          "query": [
+            { "key": "search_q", "value": "JavaScript" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "03 - Sort Books ASC (order_by=price&order=ASC)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books?order_by=price&order=ASC",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"],
+          "query": [
+            { "key": "order_by", "value": "price" },
+            { "key": "order", "value": "ASC" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "04 - Sort Books DESC (order_by=price&order=DESC)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books?order_by=price&order=DESC",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"],
+          "query": [
+            { "key": "order_by", "value": "price" },
+            { "key": "order", "value": "DESC" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "05 - Pagination Page 1 (limit=3&offset=0)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books?limit=3&offset=0",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"],
+          "query": [
+            { "key": "limit", "value": "3" },
+            { "key": "offset", "value": "0" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "06 - Pagination Page 2 (limit=3&offset=3)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books?limit=3&offset=3",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"],
+          "query": [
+            { "key": "limit", "value": "3" },
+            { "key": "offset", "value": "3" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "07 - Minimum Price Filter (min_price=45)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books?min_price=45",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"],
+          "query": [
+            { "key": "min_price", "value": "45" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "08 - Maximum Price Filter (max_price=40)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books?max_price=40",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"],
+          "query": [
+            { "key": "max_price", "value": "40" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "09 - Price Range Filter (min_price=35&max_price=45)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books?min_price=35&max_price=45",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"],
+          "query": [
+            { "key": "min_price", "value": "35" },
+            { "key": "max_price", "value": "45" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "10 - Combined Query Parameters",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books?search_q=Design&min_price=30&order_by=price&order=DESC&limit=5&offset=0",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"],
+          "query": [
+            { "key": "search_q", "value": "Design" },
+            { "key": "min_price", "value": "30" },
+            { "key": "order_by", "value": "price" },
+            { "key": "order", "value": "DESC" },
+            { "key": "limit", "value": "5" },
+            { "key": "offset", "value": "0" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "11 - GET Book by ID (id=1)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books", "1"]
+        }
+      }
+    },
+    {
+      "name": "12 - GET Invalid Book ID (id=999)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books/999",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books", "999"]
+        }
+      }
+    },
+    {
+      "name": "13 - POST Valid Book",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Mastering Full Stack Development\",\n  \"author\": \"Sanjay Thota\",\n  \"price\": 55,\n  \"pages\": 420\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/books",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"]
+        }
+      }
+    },
+    {
+      "name": "14 - POST Without Title",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"author\": \"Sanjay Thota\",\n  \"price\": 55,\n  \"pages\": 420\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/books",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"]
+        }
+      }
+    },
+    {
+      "name": "15 - POST Without Author",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Mastering Full Stack Development\",\n  \"price\": 55,\n  \"pages\": 420\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/books",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"]
+        }
+      }
+    },
+    {
+      "name": "16 - POST With Invalid Price",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Mastering Full Stack Development\",\n  \"author\": \"Sanjay Thota\",\n  \"price\": \"free\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/books",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books"]
+        }
+      }
+    },
+    {
+      "name": "17 - PUT Update Book (id=1)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"The Pragmatic Programmer (20th Anniversary Edition)\",\n  \"author\": \"Andrew Hunt & David Thomas\",\n  \"price\": 52,\n  \"pages\": 352\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/books/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books", "1"]
+        }
+      }
+    },
+    {
+      "name": "18 - PUT Invalid Book ID (id=9999)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Non-existent Book\",\n  \"author\": \"Unknown\",\n  \"price\": 30,\n  \"pages\": 100\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/books/9999",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books", "9999"]
+        }
+      }
+    },
+    {
+      "name": "19 - DELETE Book (id=11)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books/11",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books", "11"]
+        }
+      }
+    },
+    {
+      "name": "20 - DELETE Invalid Book ID (id=9999)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/books/9999",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["books", "9999"]
+        }
+      }
+    }
+  ]
+}
+

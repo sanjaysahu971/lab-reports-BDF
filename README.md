@@ -17,9 +17,11 @@ Repository containing all laboratory exercises for **Backend Development Fundame
 |:---:|:---|:---:|:---:|
 | **01** | Node.js and Express Server | [`lab-01/`](./lab-01/) | Completed |
 | **02** | SQLite database and CRUD routes | [`lab-02/`](./lab-02/) | Completed |
+| **03** | REST API, Query Parameters, Validation and Debugging | [`lab-03/`](./lab-03/) | Completed |
 
 ---
 
 ### Documentation Links
 - [Lab 1 Documentation](./lab-01/README.md)
 - [Lab 2 Documentation](./lab-02/README.md)
+- [Lab 3 Documentation](./lab-03/README.md)
